@@ -4,12 +4,10 @@ import './sign-in.styles.scss';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
-import { useHistory } from 'react-router-dom';
 
 const SignIn = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -17,7 +15,6 @@ const SignIn = (props) => {
       await auth.signInWithEmailAndPassword(email, password);
       setEmail('');
       setPassword('');
-      history.push('/');
     } catch (error) {
       console.log('Problem loggin in', error.message);
     }
@@ -25,7 +22,6 @@ const SignIn = (props) => {
   const handleGoogleSignIn = async () => {
     try {
       await signInWithGoogle();
-      history.push('/');
     } catch (error) {
       console.log(error.message);
     }
