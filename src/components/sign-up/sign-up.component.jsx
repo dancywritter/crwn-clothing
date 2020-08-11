@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import './sign-up.styles.scss';
-import FormInput from '../form-input/form-input.component';
-import CustomButton from '../custom-button/custom-button.component';
+import FormInput from '../form/form-input/form-input.component';
+import CustomButton from '../form/custom-button/custom-button.component';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
 const SignUp = () => {

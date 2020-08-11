@@ -7,9 +7,12 @@ import './header.styles.scss';
 
 import { auth } from '../../firebase/firebase.utils';
 import { useSelector } from 'react-redux';
+import CartIcon from '../cart/cart-icon/cart-icon.component';
+import CartDropdown from '../cart/cart-dropdown/cart-dropdown.components';
 
 const Header = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
+  const cartHidden = useSelector((state) => state.cart.hidden);
 
   console.log(currentUser);
   return (
@@ -33,7 +36,9 @@ const Header = () => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      {cartHidden || <CartDropdown />}
     </div>
   );
 };

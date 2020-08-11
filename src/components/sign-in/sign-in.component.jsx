@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import './sign-in.styles.scss';
-import FormInput from '../form-input/form-input.component';
-import CustomButton from '../custom-button/custom-button.component';
+import FormInput from '../form/form-input/form-input.component';
+import CustomButton from '../form/custom-button/custom-button.component';
 import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
 
 const SignIn = (props) => {
