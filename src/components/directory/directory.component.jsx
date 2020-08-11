@@ -8,7 +8,7 @@ import MenuItem from '../menu-item/menu-item.component';
 const Directory = () => {
   const [sections] = useState(InitialSections);
   return (
-    <div class="directory-menu">
+    <div className="directory-menu">
       {sections.map((section) => (
         <MenuItem key={section.id} {...section} />
       ))}
