@@ -5,7 +5,6 @@ const { cartActionTypes } = require('./cart.types');
 const initialState = {
   hidden: true,
   cartItems: [],
-  cartItemCount: 0,
 };
 
 const cartReducer = (state = initialState, action) => {

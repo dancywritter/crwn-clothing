@@ -14,7 +14,6 @@ const Header = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const cartHidden = useSelector((state) => state.cart.hidden);
 
-  console.log(currentUser);
   return (
     <div className="header">
       <Link className="logo-container" to="/">
