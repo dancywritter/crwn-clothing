@@ -1,8 +1,8 @@
 import React from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import CustomButton from '../form/custom-button/custom-button.component';
 
 import './stripe-button.styles.scss';
+
 const StripeCheckoutButton = ({ price }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -37,13 +37,15 @@ const StripeCheckoutButton = ({ price }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Card Details</label>
-      <CardElement />
-      <button type="submit" disabled={!stripe}>
-        Pay with Stripe
-      </button>
-    </form>
+    <div className="stripe">
+      <form onSubmit={handleSubmit}>
+        <label>Card Details</label>
+        <CardElement />
+        <button type="submit" disabled={!stripe}>
+          Pay with Stripe
+        </button>
+      </form>
+    </div>
   );
 };
 
