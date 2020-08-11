@@ -1,6 +1,6 @@
 /* Used as starting data for ShopPage */
 
-export const shopData = [
+export const collections = [
   {
     id: 1,
     title: 'Hats',
