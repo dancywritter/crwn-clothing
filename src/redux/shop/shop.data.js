@@ -1,6 +1,6 @@
 /* Used as starting data for ShopPage */
 
-export const collections = [
+const collectionsArray = [
   {
     id: 1,
     title: 'Hats',
@@ -282,3 +282,8 @@ export const collections = [
     ],
   },
 ];
+
+export const collections = {};
+collectionsArray.forEach((collection) => {
+  collections[collection.routeName] = collection;
+});
