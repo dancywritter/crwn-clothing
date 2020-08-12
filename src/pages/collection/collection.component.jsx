@@ -11,7 +11,7 @@ const CollectionPage = ({
   },
 }) => {
   const collection = useSelector(selectShopCollection(collectionId));
-  const { title, items } = collection;
+  const { title, items } = collection ? collection : { title: '', items: [] };
 
   return (
     <div className="collection-page">

@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 
 import CollectionsOverview from '../../components/collection/collections-overview/collections-overview.component';
 import CollectionPage from '../collection/collection.component';
 
-import {
-  firestore,
-  convertCollectionSnapshotToMap,
-} from '../../firebase/firebase.utils';
-import { useDispatch } from 'react-redux';
-import { updateCollections } from '../../redux/shop/shop.actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
+import { selectShopIsFetching } from '../../redux/shop/shop.selectors';
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
@@ -17,21 +14,12 @@ const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
 const ShopPage = ({ match }) => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
+  const loading = useSelector(selectShopIsFetching);
 
   useEffect(() => {
-    const collectionRef = firestore.collection('collections');
-    const unsubscribeFromSnapshot = collectionRef.onSnapshot(
-      async (snapshot) => {
-        const collectionsMap = convertCollectionSnapshotToMap(snapshot);
-        dispatch(updateCollections(collectionsMap));
-        setLoading(false);
-      }
-    );
-    return () => {
-      unsubscribeFromSnapshot();
-    };
+    dispatch(fetchCollectionsStartAsync());
   }, [dispatch]);
+
   return (
     <div className="shop-page">
       <Route
