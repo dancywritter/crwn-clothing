@@ -3,29 +3,22 @@ import React, { useState } from 'react';
 import './sign-in.styles.scss';
 import FormInput from '../form/form-input/form-input.component';
 import CustomButton from '../form/custom-button/custom-button.component';
-import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
+import { useDispatch } from 'react-redux';
+import {
+  googleSignInStart,
+  emailSignInStart,
+} from '../../redux/user/user.actions';
 
 const SignIn = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(emailSignInStart({ email, password }));
+  };
 
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      setEmail('');
-      setPassword('');
-    } catch (error) {
-      console.log('Problem loggin in', error.message);
-    }
-  };
-  const handleGoogleSignIn = async () => {
-    try {
-      await signInWithGoogle();
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
   return (
     <div className="sign-in">
       <h2>I already have an account</h2>
@@ -48,8 +41,8 @@ const SignIn = (props) => {
         <div className="buttons">
           <CustomButton type="submit">Sign In</CustomButton>
           <CustomButton
-            type="submit"
-            onClick={handleGoogleSignIn}
+            type="button"
+            onClick={() => dispatch(googleSignInStart())}
             isGoogleSignIn
           >
             Sign In With Google
