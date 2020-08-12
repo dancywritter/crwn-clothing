@@ -1,4 +1,3 @@
-// import { collections } from './shop.data';
 import { shopActionTypes } from './shop.types';
 
 const initialState = {
